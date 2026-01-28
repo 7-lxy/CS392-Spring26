@@ -29,5 +29,4 @@ public class Payroll {
     private Employee people[];
     private int maximum_size;
     private int current_size;
-    ...
 }
