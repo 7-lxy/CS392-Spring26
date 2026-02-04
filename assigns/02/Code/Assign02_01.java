@@ -7,7 +7,19 @@ public class Assign02_01 {
       is expected return the correct answer instantly. Note that you can only use arithmetic
       operations here. In particular, NO BIT-WISE OPERATIONS ARE ALLOWED.
      */
-    public void main(String[] argv) {
+    public static void main(String[] argv) { // added 'static' key word to allow execution
 	// Please give your implementation here
+        int x = 1;
+        int count = 0;
+
+        while (x > 0) {
+            x *= 2;
+            count++;
+        }
+
+        count += 1;
+
+        System.out.println("The number of bits used to represent an int in Java is: " + count);
+
     }
 }
