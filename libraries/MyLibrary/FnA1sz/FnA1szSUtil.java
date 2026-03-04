@@ -1,6 +1,6 @@
-package Library00.FnA1sz;
+package MyLibrary.FnA1sz;
 
-import Library00.FnList.*;
+import MyLibrary.FnList.*;
 
 import java.util.function.Function;
 import java.util.function.Consumer;
