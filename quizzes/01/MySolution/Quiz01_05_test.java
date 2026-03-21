@@ -3,7 +3,7 @@
 //
 
 import java.util.function.ToIntBiFunction;
-import MyLibrary.FnList.*;
+import MyLibrary.FnList.FnList;
 
 abstract public class Quiz01_05_test {
 

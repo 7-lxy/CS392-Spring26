@@ -14,7 +14,7 @@
  is allowed here.
 //
 */
-import MyLibrary.FnList.*;
+import MyLibrary.FnList.FnList;
 import MyLibrary.Sorting.InsertionSortStable;
 
 import java.util.function.ToIntBiFunction;
@@ -33,14 +33,52 @@ abstract public class Quiz01_05 {
 	// HX-2025-10-15:
 	// Please implement a reverse-stable sorting method
 	// based on someSort
-        FnList<T> rev = new FnList<>();
+        FnList<Tagged<T>> tagged = new FnList<>();
+        int i = 0;
+        FnList<T> ys = xs;
 
-        while (xs.consq()) {
-            rev = new FnList<>(xs.hd(), rev);
-            xs = xs.tl();
+        while (ys.consq()) {
+            tagged = new FnList<>(new Tagged<>(ys.hd(), i), tagged);
+            ys = ys.tl();
+            i += 1;
         }
 
-        return someSort(rev, cmp);
+        FnList<Tagged<T>> sorted =
+            someSort(
+                tagged,
+                (a, b) -> {
+                    int sgn = cmp.applyAsInt(a.val, b.val);
+                    if (sgn != 0) return sgn;
+
+                    // reverse-stable: later element comes first
+                    if (a.idx > b.idx) return -1;
+                    if (a.idx < b.idx) return 1;
+                    return 0;
+                }
+            );
+
+        FnList<T> res = new FnList<>();
+        while (sorted.consq()) {
+            res = new FnList<>(sorted.hd().val, res);
+            sorted = sorted.tl();
+        }
+
+        FnList<T> ans = new FnList<>();
+        while (res.consq()) {
+            ans = new FnList<>(res.hd(), ans);
+            res = res.tl();
+        }
+        return ans;
+    }
+
+    private static class Tagged<T> {
+        T val;
+        int idx;
+
+        Tagged(T v, int i) {
+            val = v;
+            idx = i;
+        }
     }
 }
 
