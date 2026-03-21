@@ -8,9 +8,9 @@ Problem 1.
 3. Yes
 
 Problem 2.
-    1. Yes 
-    2. Yes
-    3. Yes
+1. Yes 
+2. Yes
+3. Yes
 
 Problem 3.
 1. Yes
@@ -18,9 +18,9 @@ Problem 3.
 3. Yes
 
 Problem 4.
-    1. Yes
-    2. Yes
-    3. Yes
+1. Yes
+2. Yes
+3. Yes
 
 Problem 5.
 1. Yes
