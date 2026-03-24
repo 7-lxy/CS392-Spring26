@@ -40,3 +40,19 @@ Please remember to sync with the class repo *frequently*:
 git fetch upstream
 git merge upstream/main main
 ```
+
+```
+git checkout main
+git pull origin main
+```
+
+```
+git add .
+git commit -m "message"
+git push origin main
+```
+
+```
+git checkout main
+git reset --hard origin/main
+```
