@@ -10,7 +10,7 @@ public class Assign08_02<V>
     // based on open addressing. The probing strategy
     // chosen for handling collisions is quadratic probing.
     private FnTupl2<String, V>[] table;
-    private byte[] state; // 0 = empty, 1 = occupied, 2 = deleted
+    private byte[] state; 
     private int size;
 
     private static final int CAPACITY = 97;
@@ -53,7 +53,7 @@ public class Assign08_02<V>
                 }
             } else if (state[i] == 2) {
                 if (firstDeleted < 0) firstDeleted = i;
-            } else { // state[i] == 0
+            } else { 
                 return (firstDeleted >= 0 ? firstDeleted : i);
             }
         }
@@ -157,7 +157,7 @@ public class Assign08_02<V>
 
         V old = table[i].sub1;
         table[i] = null;
-        state[i] = 2; // tombstone
+        state[i] = 2; 
         size -= 1;
         return old;
     }
