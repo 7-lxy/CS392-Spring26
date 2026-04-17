@@ -2,10 +2,9 @@
   "java.project.sourcePaths": [
     "quizzes/01/MySolution",
     "libraries",
-    "assigns/06/MySolution",
     "assigns/05/MySolution",
     "assigns/04/MySolution",
-    "assigns/07/MySolution"
+    "assigns/09/MySolution"
   ],
   "java.project.outputPath": "bin"
 }
