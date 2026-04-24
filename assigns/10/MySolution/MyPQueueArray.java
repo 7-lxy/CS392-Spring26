@@ -52,13 +52,9 @@ public class MyPQueueArray<T extends Comparable<? super T>> extends MyPQueueBase
 
     @Override
     public void enque$raw(T itm) {
-        if (itm == null) {
-            throw new NullPointerException("priority queue does not support null items");
-        }
-
         heap[n] = itm;
-        siftUp(n);
         n += 1;
+        siftUp(n - 1);
     }
 
     private void siftUp(int child) {
