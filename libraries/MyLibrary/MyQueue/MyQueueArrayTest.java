@@ -1,5 +1,7 @@
 package MyLibrary.MyQueue;
 
+import MyLibrary.MyQueue.*;
+
 public class MyQueueArrayTest {
     public static void main(String[] args) {
 	MyQueueArray<Integer> itms = new MyQueueArray(10);
@@ -10,8 +12,8 @@ public class MyQueueArrayTest {
 	itms.enque$exn(4);
 	itms.enque$exn(5);
 	itms.System$out$print(); System.out.println();
-    	System.out.print("MyQueueRev(");
-	itms.irforitm
+    	System.out.print("MyQueue(");
+	itms.iforitm
 	(
           (i, itm) ->
 	  {
