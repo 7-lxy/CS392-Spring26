@@ -7,6 +7,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
+import java.util.function.ToIntBiFunction;
 
 public class LnList<T> {
     Node root;
@@ -134,6 +135,120 @@ public class LnList<T> {
 	}
 	return new LnList<T>(ys);
     }
+//
+    public Node copyNodes(Node xs) {
+	Node head = null;
+	Node tail = null;
+	while (xs != null) {
+	    Node node = new Node(xs.head, null);
+	    if (head == null) {
+		head = node;
+		tail = node;
+	    } else {
+		tail.tail = node;
+		tail = node;
+	    }
+	    xs = xs.tail;
+	}
+	return head;
+    }
+//
+    private Node splitNodes(Node xs) {
+	Node slow = xs;
+	Node fast = xs.tail;
+	while (fast != null && fast.tail != null) {
+	    slow = slow.tail;
+	    fast = fast.tail.tail;
+	}
+	Node second = slow.tail;
+	slow.tail = null;
+	return second;
+    }
+//
+    private Node mergeNodes(Node xs, Node ys, ToIntBiFunction<T,T> cmp) {
+	Node dummy = new Node(null, null);
+	Node tail = dummy;
+	while (xs != null && ys != null) {
+	    if (cmp.applyAsInt(xs.head, ys.head) <= 0) {
+		tail.tail = xs;
+		xs = xs.tail;
+	    } else {
+		tail.tail = ys;
+		ys = ys.tail;
+	    }
+	    tail = tail.tail;
+	}
+	tail.tail = (xs != null) ? xs : ys;
+	return dummy.tail;
+    }
+//
+    private Node mergeSortNodes(Node xs, ToIntBiFunction<T,T> cmp) {
+	if (xs == null || xs.tail == null) return xs;
+	Node ys = splitNodes(xs);
+	return mergeNodes(mergeSortNodes(xs, cmp), mergeSortNodes(ys, cmp), cmp);
+    }
+//
+    private Node insertNode(Node sorted, Node x0, ToIntBiFunction<T,T> cmp) {
+	if (sorted == null || cmp.applyAsInt(x0.head, sorted.head) < 0) {
+	    x0.tail = sorted;
+	    return x0;
+	}
+	Node curr = sorted;
+	while (curr.tail != null && cmp.applyAsInt(curr.tail.head, x0.head) <= 0) {
+	    curr = curr.tail;
+	}
+	x0.tail = curr.tail;
+	curr.tail = x0;
+	return sorted;
+    }
+//
+    private Node insertSortNodes(Node xs, ToIntBiFunction<T,T> cmp) {
+	Node sorted = null;
+	while (xs != null) {
+	    Node next = xs.tail;
+	    xs.tail = null;
+	    sorted = insertNode(sorted, xs, cmp);
+	    xs = next;
+	}
+	return sorted;
+    }
+//
+    public LnList<T> mergeSort1(ToIntBiFunction<T,T> cmp) {
+	return new LnList<T>(mergeSortNodes(copyNodes(root), cmp));
+    }
+    public LnList<T> mergeSort0(ToIntBiFunction<T,T> cmp) {
+	Node xs = root;
+	root = null;
+	return new LnList<T>(mergeSortNodes(xs, cmp));
+    }
+    public void mergeSort1$raw(ToIntBiFunction<T,T> cmp) {
+	root = mergeSortNodes(root, cmp);
+	return;
+    }
+//
+    public LnList<T> insertSort1(ToIntBiFunction<T,T> cmp) {
+	return new LnList<T>(insertSortNodes(copyNodes(root), cmp));
+    }
+    public LnList<T> insertSort0(ToIntBiFunction<T,T> cmp) {
+	Node xs = root;
+	root = null;
+	return new LnList<T>(insertSortNodes(xs, cmp));
+    }
+    public void insertSort1$raw(ToIntBiFunction<T,T> cmp) {
+	root = insertSortNodes(root, cmp);
+	return;
+    }
+//
+    public boolean orderedq1(ToIntBiFunction<T,T> cmp) {
+	Node xs = root;
+	if (xs == null) return true;
+	while (xs.tail != null) {
+	    if (cmp.applyAsInt(xs.head, xs.tail.head) > 0) return false;
+	    xs = xs.tail;
+	}
+	return true;
+    }
+
 //
     public void System$out$print1() {
     	System.out.print("LnList(");

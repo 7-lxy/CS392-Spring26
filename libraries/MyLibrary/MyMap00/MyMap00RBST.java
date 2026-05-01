@@ -1,6 +1,6 @@
 package MyLibrary.MyMap00;
 
-import Library00.FnList.*;
+import MyLibrary.FnList.*;
 
 import java.util.function.Consumer;
 import java.util.function.BiConsumer;

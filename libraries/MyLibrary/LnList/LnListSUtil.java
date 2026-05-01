@@ -38,4 +38,52 @@ public class LnListSUtil {
 	return xs.reverse0();
     }
 //
+    public static<T>
+	boolean orderedq1(LnList<T> xs, ToIntBiFunction<T,T> cmp) {
+	return xs.orderedq1(cmp);
+    }
+    public static
+	<T extends Comparable<T>>
+	boolean orderedq1(LnList<T> xs) {
+	return orderedq1(xs, (x1, x2) -> x1.compareTo(x2));
+    }
+//
+    public static<T>
+	LnList<T> mergeSort1(LnList<T> xs, ToIntBiFunction<T,T> cmp) {
+	return xs.mergeSort1(cmp);
+    }
+    public static<T>
+	LnList<T> mergeSort0(LnList<T> xs, ToIntBiFunction<T,T> cmp) {
+	return xs.mergeSort0(cmp);
+    }
+    public static
+	<T extends Comparable<T>>
+	LnList<T> mergeSort1(LnList<T> xs) {
+	return mergeSort1(xs, (x1, x2) -> x1.compareTo(x2));
+    }
+    public static
+	<T extends Comparable<T>>
+	LnList<T> mergeSort0(LnList<T> xs) {
+	return mergeSort0(xs, (x1, x2) -> x1.compareTo(x2));
+    }
+//
+    public static<T>
+	LnList<T> insertSort1(LnList<T> xs, ToIntBiFunction<T,T> cmp) {
+	return xs.insertSort1(cmp);
+    }
+    public static<T>
+	LnList<T> insertSort0(LnList<T> xs, ToIntBiFunction<T,T> cmp) {
+	return xs.insertSort0(cmp);
+    }
+    public static
+	<T extends Comparable<T>>
+	LnList<T> insertSort1(LnList<T> xs) {
+	return insertSort1(xs, (x1, x2) -> x1.compareTo(x2));
+    }
+    public static
+	<T extends Comparable<T>>
+	LnList<T> insertSort0(LnList<T> xs) {
+	return insertSort0(xs, (x1, x2) -> x1.compareTo(x2));
+    }
+//
 } // end of [public class LnListSUtil{...}]

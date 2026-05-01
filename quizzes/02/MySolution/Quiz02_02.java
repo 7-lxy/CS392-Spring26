@@ -18,10 +18,32 @@ public class Quiz02_02 {
 	// Please implement a sorting algorithm
 	// WITHOUT recursion that can effectively
 	// sort A.
+        for (int i = 1; i < A.length; i += 1) {
+            T key = A[i];
+            int j = i - 1;
+
+            while (j >= 0 && A[j].compareTo(key) > 0) {
+                A[j + 1] = A[j];
+                j -= 1;
+            }
+
+            A[j + 1] = key;
+        }
     }
     public static void main (String[] args) {
 	// HX-2025-11-19:
 	// Please write minimal testing code for sort1000WithNoRecursion
+		Integer[] A = {5, 2, 9, 1, 5, 6};
+
+        sort1000WithNoRecursion(A);
+
+        for (int i = 0; i < A.length; i += 1) {
+            System.out.print(A[i]);
+            if (i + 1 < A.length) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println();
 	return /*void*/;
     }
 } // end of [public class Quiz02_02{...}]

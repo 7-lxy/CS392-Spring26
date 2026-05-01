@@ -11,6 +11,17 @@ Please state the status of this question:
 2. Solved with testing?
 3. Solved without testing?
 If solved, please BRIEFLY explain your strategy.
+
+Solved with testing
+explanation:
+compute dp[i] = length of the longest nondecreasing subsequence starting at index i
+find the maximum length
+reconstruct the answer greedily from left to right by always choosing the earliest index that can still complete a longest subsequence
+
+The dynamic programming part has a nested loop so for each index i, it checks the indexes after j, so this costs at most about n(n-1)/2, which is O(n^2). 
+Finding the maximum is O(n), and reconstructing the answer scans forward through the array, which is also at most O(n^2) in the simplest bound.
+Therefore, the total running time is O(n^2).
+
   
 ############################################################
 
@@ -22,6 +33,12 @@ Please state the status of this question:
 3. Solved without testing?
 If solved, please BRIEFLY explain your strategy.
 
+Solved with testing
+explanation: 
+Start at index 1. 
+Save A[i] as key, then move left through the sorted portion and shift every larger element one space to the right. 
+Once you find the correct spot, place key there. Repeat this until the whole array is sorted.
+
 ############################################################
 
 Quiz02_03: 50 points
@@ -31,6 +48,8 @@ Please state the status of this question:
 2. Solved with testing?
 3. Solved without testing?
 If solved, please BRIEFLY explain your strategy.
+
+Incomplete
 
 ############################################################
 
@@ -49,6 +68,16 @@ Please state the status of this question:
 3. Solved without testing?
 If solved, please BRIEFLY explain your strategy.
 
+Solved with testing
+
+explanation:
+To make an AVL tree with 1,000,000 keys have maximal height, build it as tall and skinny as the AVL rule allows. 
+At each node, one subtree should have height h − 1 and the other should have height h − 2, because AVL trees allow subtree heights to differ by at most 1.
+The minimum number of nodes needed for AVL height h follows the recurrence:
+N(h) = 1 + N(h − 1) + N(h − 2). Since N(27) = 832,039 and N(28) = 1,346,268, a tree with 1,000,000 keys can reach height 27 but not height 28. 
+Therefore, the maximal height is 27 edges or 28 levels. 
+To make it a BST, build teh maximal-height AVL shape and assign keys 0 through 999,999 using inorder traversal.
+
 ############################################################
 
 Quiz02_05:
@@ -60,6 +89,8 @@ Please state the status of this question:
 3. Solved without testing?
 If solved, please BRIEFLY explain your strategy.
 
+N/A
+
 ############################################################
 
 Quiz02_06: 50 points
@@ -69,5 +100,15 @@ Please state the status of this question:
 2. Solved with testing?
 3. Solved without testing?
 If solved, please BRIEFLY explain your strategy.
+
+Solved with testing
+
+explanation: 
+For insert, smaller keys go left, larger keys go right. 
+If the key is found, return false; otherwise, attach the new node as a leaf and update the sizes on the path back to the root.
+
+For reroot, use the sizes to randomly pick one node from the tree. 
+Then repeatedly rotate that node upward. If the picked node is a left child, rotate its parent right. If it is a right child, rotate its parent left. 
+Each rotation preserves the BST ordering, so when the picked node finally reaches the top, the tree still contains the same keys in valid BST order.
 
 ############################################################

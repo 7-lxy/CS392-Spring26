@@ -41,11 +41,71 @@ public class Quiz02_01 {
 	// This method finds the leftmost longest ascending subsequence
 	// of xs. Note that the returned list consists of the indices of
 	// the elements of the subsequence.
-	return null;
+        int n = xs.length();
+
+        if (n <= 0) {
+            return FnListSUtil.nil();
+        }
+
+        int[] dp = new int[n];
+
+        for (int i = n - 1; i >= 0; i -= 1) {
+            dp[i] = 1;
+
+            for (int j = i + 1; j < n; j += 1) {
+                if (xs.getAt(i).compareTo(xs.getAt(j)) <= 0) {
+                    if (1 + dp[j] > dp[i]) {
+                        dp[i] = 1 + dp[j];
+                    }
+                }
+            }
+        }
+
+        int maxLen = 0;
+        for (int i = 0; i < n; i += 1) {
+            if (dp[i] > maxLen) {
+                maxLen = dp[i];
+            }
+        }
+
+        FnList<Integer> ansRev = FnListSUtil.nil();
+
+        int prevIndex = -1;
+        T prevValue = null;
+        int need = maxLen;
+
+        while (need > 0) {
+            for (int i = prevIndex + 1; i < n; i += 1) {
+                boolean valueOK =
+                    (prevIndex < 0) ||
+                    (prevValue.compareTo(xs.getAt(i)) <= 0);
+
+                boolean lengthOK = dp[i] >= need;
+
+                if (valueOK && lengthOK) {
+                    ansRev = FnListSUtil.cons(i, ansRev);
+                    prevIndex = i;
+                    prevValue = xs.getAt(i);
+                    need -= 1;
+                    break;
+                }
+            }
+        }
+
+        return FnListSUtil.reverse(ansRev);
     }
     public static void main (String[] args) {
 	// HX-2025-11-19:
 	// Please write minimal testing code for FnA1szLongestMonoSubsequence
+        Integer[] arr = {1, 2, 1, 2, 3, 1, 2, 3, 4};
+        FnA1sz<Integer> xs = new FnA1sz<Integer>(arr);
+
+        FnList<Integer> ans = FnA1szLongestMonoSubsequence(xs);
+
+        ans.System$out$print();
+        System.out.println();
+
+
 	return /*void*/;
     }
 } // end of [public class Quiz02_01{...}]

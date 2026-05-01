@@ -3,7 +3,7 @@ package MyLibrary.MyQueue;
 import java.util.function.Consumer;
 import java.util.function.BiConsumer;
 
-interface MyQueue<T> {
+public interface MyQueue<T> {
 //
     int size();
 //

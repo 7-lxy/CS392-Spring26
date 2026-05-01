@@ -3,7 +3,7 @@ package MyLibrary.Sorting;
 import java.util.Random;
 import java.util.function.ToIntBiFunction;
 
-class QuickSortArray {
+public class QuickSortArray {
     public static <T extends Comparable<T>> void quickSort_array(T[] xs) {
         quickSort_array(xs, (x1, x2) -> x1.compareTo(x2));
         return;
